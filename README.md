@@ -1,6 +1,6 @@
 # Signal Desk
 
-A dependency-free browser prototype for evidence-aware customer support intake.
+Invoice Intelligence Analyzer is a dependency-free browser prototype for evidence-aware customer support intake. It analyzes customer messages alongside uploaded invoices, screenshots, PDFs, and product images.
 
 ## Run
 
