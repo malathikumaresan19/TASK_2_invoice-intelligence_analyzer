@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Evidence-aware support workspace for messages, documents, screenshots, and product images.">
+  <title>Signal Desk | Evidence-aware support</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Signal Desk home"><span class="brand-mark">S</span><span>signal<span class="brand-muted">desk</span></span></a>
+      <div class="topbar-meta"><span class="status-dot"></span> Intake protected <span class="divider"></span> Workspace 04</div>
+      <button class="icon-button" id="resetBtn" type="button" title="Clear current case" aria-label="Clear current case">↻</button>
+    </header>
+
+    <main class="workspace">
+      <section class="intro-row">
+        <div>
+          <p class="eyebrow">Support intelligence <span>/</span> case intake</p>
+          <h1>Read the signal,<br><em>not the noise.</em></h1>
+          <p class="lede">Bring the customer’s message and evidence together. Signal Desk extracts what can be verified, flags what cannot, and keeps private data out of the trail.</p>
+        </div>
+        <div class="case-chip"><span class="case-label">CASE</span><span id="caseId">SD-4821</span><span class="live-pulse"></span></div>
+      </section>
+
+      <section class="grid-layout">
+        <div class="left-column">
+          <article class="panel message-panel">
+            <div class="panel-heading"><div><span class="step-number">01</span><h2>Customer message</h2></div><span class="heading-note">Required</span></div>
+            <label class="sr-only" for="messageInput">Customer message</label>
+            <textarea id="messageInput" rows="5" placeholder="Paste the customer’s message here...">My order #847291 has not arrived. I was charged $129.99 on June 12 and the tracking page shows error E-403.</textarea>
+            <div class="message-footer"><span id="charCount">0 characters</span><span class="privacy-note">Private fields are masked in logs</span></div>
+          </article>
+
+          <article class="panel evidence-panel">
+            <div class="panel-heading"><div><span class="step-number">02</span><h2>Evidence files</h2></div><span class="heading-note" id="fileCount">0 files</span></div>
+            <div class="drop-zone" id="dropZone" tabindex="0" role="button" aria-label="Upload evidence files">
+              <input id="fileInput" type="file" multiple accept=".png,.jpg,.jpeg,.webp,.pdf,.txt,.csv,.json">
+              <div class="upload-icon">↑</div><strong>Drop files here or <u>browse</u></strong><span>PDF, screenshot, invoice, or product image · 10 MB max each</span>
+            </div>
+            <div class="file-list" id="fileList" aria-live="polite"></div>
+          </article>
+
+          <div class="action-row"><button class="primary-button" id="analyzeBtn" type="button"><span class="button-icon">✦</span> Analyze case <span class="arrow">→</span></button><span class="shortcut">⌘ ↵</span></div>
+        </div>
+
+        <aside class="right-column">
+          <article class="panel status-panel">
+            <div class="panel-heading"><div><span class="step-number">03</span><h2>Analysis status</h2></div><span class="status-pill idle" id="statusPill">Ready</span></div>
+            <div class="status-body" id="statusBody"><div class="status-illustration">◌</div><h3>Waiting for evidence</h3><p>We’ll compare message claims against extracted document and image signals.</p></div>
+            <div class="progress-wrap" id="progressWrap" hidden><div class="progress-label"><span id="progressText">Reading files</span><span id="progressPercent">0%</span></div><div class="progress-track"><div class="progress-bar" id="progressBar"></div></div></div>
+          </article>
+
+          <article class="panel findings-panel">
+            <div class="panel-heading"><div><span class="step-number">04</span><h2>Verified signals</h2></div><span class="heading-note" id="signalCount">0 found</span></div>
+            <div id="findings" class="findings-empty">Analysis results will appear here.</div>
+          </article>
+
+          <article class="panel audit-panel">
+            <div class="panel-heading"><div><span class="step-number">05</span><h2>Safe activity log</h2></div><span class="heading-note">Redacted</span></div>
+            <div id="auditLog" class="audit-log"><div class="audit-entry"><span class="audit-time">NOW</span><span>Case created. No customer data recorded.</span></div></div>
+          </article>
+        </aside>
+      </section>
+    </main>
+    <footer><span>Signal Desk</span><span>Evidence expires after 30 days</span><span>OCR safeguards active</span></footer>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
